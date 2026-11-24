@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoàng Đình Tiến – hoangdinhtien.xyz</title>
+<meta name="description" content="Hoàng Đình Tiến, sinh năm 2007 tại Nghệ An. Đam mê Công nghệ thông tin, nhập ngũ năm 2026–2028 và ước mơ trở thành học viên Học viện Kỹ thuật Quân sự. Portfolio lập trình: HTML/CSS, Python.">
+<meta name="author" content="Hoàng Đình Tiến">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0f1b4d">
+<link rel="canonical" href="https://hoangdinhtien.netlify.app/">
+<link rel="icon" href="avatar.jpg">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Hoàng Đình Tiến – Công Nghệ Thông Tin">
+<meta property="og:description" content="Trang cá nhân chính thức của Hoàng Đình Tiến: đam mê Công nghệ thông tin, hành trình quân ngũ 2026–2028 và ước mơ Học viện Kỹ thuật Quân sự.">
+<meta property="og:image" content="https://hoangdinhtien.netlify.app/avatar.jpg">
+<meta property="og:url" content="https://hoangdinhtien.netlify.app/">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Hoàng Đình Tiến",
+  "alternateName": ["Hoang Dinh Tien", "hoangdinhtien.xyz"],
+  "url": "https://hoangdinhtien.netlify.app/",
+  "image": "https://hoangdinhtien.netlify.app/avatar.jpg",
+  "birthDate": "2007-11-06",
+  "email": "mailto:hoangdinhtienchamcom@gmail.com",
+  "jobTitle": "Đam mê Công nghệ thông tin",
+  "description": "Hoàng Đình Tiến, sinh năm 2007 tại Nghệ An, đam mê Công nghệ thông tin, đang thực hiện nghĩa vụ quân sự và ước mơ thi vào Học viện Kỹ thuật Quân sự.",
+  "homeLocation": { "@type": "Place", "name": "Nghệ An, Việt Nam" },
+  "knowsAbout": ["Công nghệ thông tin", "Google Sheets", "AppSheet", "Looker Studio", "HTML", "CSS", "Python", "Firebase"],
+  "sameAs": [
+    "https://www.tiktok.com/@hoangdinhtien_xyz",
+    "https://facebook.com/hoangdinhtien.xyz/",
+    "https://www.instagram.com/hoangdinhtien.xyz/"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6fd; --paper:#ffffff; --line:#e1e7f6;
+    --ink:#1c2540; --muted:#5b6785;
+    --navy:#0f1b4d; --indigo:#4f46e5; --cyan:#06b6d4; --violet:#8b5cf6;
+    --gold:#f5b83d; --gold-l:#ffd98a;
+    --grad:linear-gradient(135deg,#4f46e5,#06b6d4);
+    --shadow:0 8px 30px rgba(40,55,130,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{font-family:"Be Vietnam Pro","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);min-height:100vh;overflow-x:hidden;line-height:1.65}
+  a{color:var(--indigo)}
+
+  #prog{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--indigo));z-index:10000}
+  #glow{position:fixed;left:0;top:0;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;transition:opacity .4s;
+    background:radial-gradient(circle,rgba(79,70,229,.14),rgba(6,182,212,.07) 45%,transparent 70%)}
+
+  /* Loading */
+  #loader{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#0b1340,#26308c);transition:opacity .7s,visibility .7s}
+  #loader.hide{opacity:0;visibility:hidden}
+  .lring{width:78px;height:78px;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,255,255,0),#06b6d4,#f5b83d);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .load-name{margin-top:22px;color:#fff;font-weight:700;letter-spacing:2px;font-size:1rem}
+  .load-text{margin-top:6px;font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:3px;color:#9fb4ff}
+  .load-bar{margin-top:16px;width:210px;height:4px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+  .load-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));animation:lb 1.8s ease forwards}
+  @keyframes lb{to{width:100%}}
+
+  canvas#fx{position:fixed;inset:0;z-index:2;pointer-events:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:62px;max-width:1040px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand img{height:40px;width:40px;object-fit:contain;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(40,55,130,.18);padding:2px}
+  .brand b{font-weight:800;color:var(--navy);font-size:1rem;letter-spacing:.2px}
+  nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+  nav ul a{display:block;color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:600;padding:6px 12px;border-radius:30px;transition:.2s}
+  nav ul a:hover{color:var(--indigo);background:#eef0ff}
+  nav ul a.active{color:#fff;background:var(--grad);box-shadow:0 4px 12px rgba(79,70,229,.3)}
+
+  /* Hero */
+  .heroband{position:relative;overflow:hidden;color:#fff;
+    background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'><circle cx='3' cy='3' r='1.3' fill='%23ffffff' fill-opacity='.16'/></svg>"),linear-gradient(160deg,#0f1b4d 0%,#26308c 52%,#1b6aa8 100%)}
+  .blob{position:absolute;border-radius:50%;filter:blur(64px);animation:float 16s ease-in-out infinite;pointer-events:none}
+  .b1{width:340px;height:340px;background:#06b6d4;opacity:.45;left:-90px;top:20px}
+  .b2{width:300px;height:300px;background:#c026d3;opacity:.30;right:-70px;top:90px;animation-delay:-5s}
+  .b3{width:240px;height:240px;background:#f5b83d;opacity:.22;left:42%;bottom:-70px;animation-delay:-9s}
+  @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,-22px)}}
+  .hero{position:relative;z-index:1;text-align:center;padding:56px 0 86px}
+  .avatar-box{position:relative;width:170px;height:170px;margin:0 auto 26px}
+  .avatar-box::before{content:"";position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 0deg,#f5b83d,#06b6d4,#8b5cf6,#f5b83d);animation:spin 7s linear infinite}
+  .avatar-box img{position:relative;width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid #fff;display:block;background:#2a3590;box-shadow:0 12px 34px rgba(0,0,0,.35)}
+  .chip{position:absolute;top:50%;left:50%;z-index:3;padding:4px 11px;border-radius:30px;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:800;color:var(--navy);background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.25);white-space:nowrap;
+    animation:orbit 26s linear infinite;animation-delay:var(--dl,0s)}
+  .chip.c2{background:var(--gold-l)}.chip.c3{background:#c8f3fb}.chip.c4{background:#e3dcff}
+  @keyframes orbit{from{transform:translate(-50%,-50%) rotate(0deg) translateX(124px) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(124px) rotate(-360deg)}}
+  h1{font-size:clamp(2rem,6.4vw,3.3rem);line-height:1.15;font-weight:800;letter-spacing:-.5px;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.3)}
+  .typing{margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:1rem;color:var(--gold-l);min-height:1.8em;letter-spacing:.3px;font-weight:700}
+  .typing::after{content:"▌";animation:blink .9s steps(1) infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+  .goalrow{display:inline-flex;align-items:center;gap:14px;margin-top:18px;padding:8px 24px 8px 10px;border-radius:60px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(10px);max-width:96vw}
+  .goalrow img{height:54px;width:54px;object-fit:contain;background:#fff;border-radius:50%;padding:3px;flex:none}
+  .goalrow span{text-align:left;font-weight:800;font-size:.9rem;line-height:1.35}
+  .goalrow span small{display:block;font-weight:500;color:#cfe1ff;font-size:.78rem}
+  .tagline{max-width:690px;margin:22px auto 0;color:#e8efff;font-size:1rem;line-height:1.9;white-space:pre-line}
+  .socials{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:50px;color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;border:1.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.1);backdrop-filter:blur(6px);transition:.25s}
+  .btn:hover{background:#fff;color:var(--navy);transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .wave{position:absolute;left:0;right:0;bottom:-1px;height:54px;width:100%;display:block;z-index:2}
+  .hero .h{opacity:0;transform:translateY(22px)}
+  body.in .hero .h{opacity:1;transform:none;transition:opacity .8s ease,transform .8s ease;transition-delay:var(--d,0s)}
+
+  /* Dải chữ chạy */
+  .ribbon{background:var(--grad);color:#fff;overflow:hidden;white-space:nowrap;position:relative;z-index:1}
+  .ribbon .track{display:inline-block;padding:10px 0;font-weight:700;letter-spacing:2.5px;font-size:.8rem;animation:marq 38s linear infinite}
+  .ribbon i{font-style:normal;margin:0 22px;color:var(--gold-l)}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* Sections */
+  main{position:relative;z-index:1}
+  section{padding:30px 0}
+  h2{font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+  h2 em{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:800;color:#fff;background:var(--grad);padding:4px 9px;border-radius:8px;box-shadow:0 4px 10px rgba(79,70,229,.3)}
+  h2::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,#c9d1f0,transparent)}
+  .card{position:relative;overflow:hidden;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s,border-color .3s}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(60,70,170,.18);border-color:#c9d1f7}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .info .row{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .info .row:last-child{border:none}
+  .info span{display:flex;align-items:center;gap:9px;color:var(--muted);font-weight:600;min-width:136px;flex:none;font-size:.88rem}
+  .info span i{font-style:normal;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#eef0ff;font-size:.95rem}
+  .info a{color:var(--indigo);font-weight:600;word-break:break-all}
+
+  /* Đếm ngày */
+  .cd-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;color:var(--muted);font-size:.9rem}
+  .bar{position:relative;height:30px;background:#e8ecf9;border-radius:30px;overflow:hidden;margin:16px 0}
+  .fill{height:100%;width:0;border-radius:30px;position:relative;overflow:hidden;background:linear-gradient(90deg,var(--indigo),var(--cyan));transition:width 2.4s cubic-bezier(.22,1,.36,1)}
+  .fill::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:sweep 2.6s ease-in-out infinite}
+  @keyframes sweep{to{left:110%}}
+  .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:800;color:var(--navy);text-shadow:0 0 6px #fff,0 0 3px #fff;letter-spacing:1px;z-index:2}
+  .stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:6px}
+  .stat{text-align:center;padding:14px 8px;background:linear-gradient(180deg,#f7f8ff,#eef1ff);border:1px solid var(--line);border-radius:14px}
+  .stat b{display:block;font-family:"JetBrains Mono",monospace;font-size:1.7rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat small{color:var(--muted);font-size:.75rem;font-weight:600}
+  .quote{margin-top:14px;text-align:center;color:var(--indigo);font-style:italic;font-weight:500}
+
+  /* Lộ trình */
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr)}
+  .step{position:relative;text-align:center;padding:0 10px}
+  .step::before{content:"";position:absolute;top:22px;left:50%;width:100%;height:4px;background:#e1e7f6;border-radius:4px;z-index:0}
+  .step:last-child::before{display:none}
+  .step.done::before{background:var(--grad)}
+  .dot{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:800;background:#fff;border:3px solid #cfd7f0;color:#b3bde0}
+  .step.done .dot{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.35)}
+  .step.next .dot{background:var(--gold);border-color:#e0a21f;color:var(--navy);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,184,61,.6)}50%{box-shadow:0 0 0 13px rgba(245,184,61,0)}}
+  .step b{display:block;font-size:.97rem;color:var(--ink)}
+  .step small{display:block;color:var(--indigo);font-weight:700;font-size:.8rem;margin:2px 0 4px}
+  .step p{color:var(--muted);font-size:.88rem;line-height:1.55}
+
+  /* Kỹ năng */
+  .skill{margin-bottom:18px}
+  .skill:last-child{margin-bottom:0}
+  .skill .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:7px;font-size:.93rem}
+  .skill .top b{font-family:"JetBrains Mono",monospace;color:#fff;background:var(--grad);padding:2px 9px;border-radius:20px;font-size:.78rem}
+  .sbar{height:10px;background:#e8ecf9;border-radius:10px;overflow:visible}
+  .sbar i{display:block;height:100%;width:0;border-radius:10px;position:relative;background:linear-gradient(90deg,var(--indigo),var(--cyan));transition:width 1.6s ease}
+  .sbar i::after{content:"";position:absolute;right:-5px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:#fff;border:3px solid var(--cyan);box-shadow:0 2px 8px rgba(6,182,212,.5)}
+
+  /* Ước mơ */
+  .lead{color:var(--muted);line-height:1.85;margin:-4px 0 18px;font-style:italic;border-left:4px solid var(--gold);padding-left:14px}
+  .feature{display:flex;gap:24px;align-items:center;margin-bottom:16px;color:#fff;border:0;background:linear-gradient(135deg,#1e2a78,#4f46e5 60%,#06b6d4)}
+  .feature::before{background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+  .feature::after{content:"★";position:absolute;right:-20px;bottom:-60px;font-size:11rem;color:rgba(255,255,255,.07);line-height:1}
+  .feature h3{font-size:1.25rem;color:var(--gold-l);margin-bottom:8px}
+  .feature p{color:#e6ecff;line-height:1.8;font-size:.97rem;position:relative;z-index:1}
+  .feature .slogo{flex:none;width:108px;height:108px;object-fit:contain;background:#fff;border-radius:50%;padding:7px;box-shadow:0 10px 26px rgba(0,0,0,.3);position:relative;z-index:1}
+  .goal{text-align:center}
+  .goal .ico{width:58px;height:58px;margin:4px auto 12px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:linear-gradient(135deg,#eef0ff,#dff7fb);transform:rotate(-6deg);transition:transform .3s}
+  .goal:hover .ico{transform:rotate(0) scale(1.08)}
+  .goal h3{font-size:1rem;color:var(--navy);margin-bottom:6px}
+  .goal p{color:var(--muted);line-height:1.7;font-size:.92rem}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+  .reveal.show{opacity:1;transform:none}
+
+  /* Thanh toán */
+  .pay{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .pay-visual{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .bankcard{position:relative;width:300px;max-width:100%;padding:18px 20px;border-radius:18px;color:#fff;cursor:pointer;overflow:hidden;text-align:left;
+    background:linear-gradient(135deg,#0f1b4d,#3b3fd0 60%,#06b6d4);box-shadow:0 16px 34px rgba(40,50,160,.35);transition:transform .3s}
+  .bankcard:hover{transform:translateY(-4px) rotate(-1deg)}
+  .bankcard::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;right:-60px;top:-70px;background:rgba(255,255,255,.12)}
+  .bc-top{display:flex;justify-content:space-between;font-weight:800;letter-spacing:2px;font-size:.78rem;opacity:.95}
+  .bc-chip{width:40px;height:30px;margin:16px 0 12px;border-radius:7px;background:linear-gradient(135deg,#ffe9a8,#e6b043);position:relative}
+  .bc-chip::after{content:"";position:absolute;inset:6px 8px;border:1px solid rgba(120,80,0,.4);border-radius:3px}
+  .bc-num{font-family:"JetBrains Mono",monospace;font-size:1.35rem;letter-spacing:3px;font-weight:700}
+  .bc-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:12px;gap:8px}
+  .bc-bottom small{display:block;font-size:.6rem;letter-spacing:1.5px;opacity:.75}
+  .bc-bottom b{font-size:.85rem;letter-spacing:1px}
+  .bc-hint{font-size:.7rem;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .pay .qr{flex:none;width:132px;height:132px;border-radius:14px;background:#fff;padding:7px;object-fit:contain;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .pay .detail{min-width:230px;flex:1;max-width:350px}
+  .pay .bank{font-weight:800;font-size:.95rem;color:var(--navy);margin-bottom:10px}
+  .pay .field{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 14px;border-radius:12px;border:1.5px dashed #c3cbee;background:#f7f8ff;color:var(--ink);cursor:pointer;font-family:inherit;text-decoration:none;transition:.25s}
+  .pay .field:hover{border-color:var(--indigo);background:#eef0ff;transform:translateX(3px)}
+  .pay .field small{display:block;color:var(--muted);font-size:.7rem;letter-spacing:1px;font-weight:700}
+  .pay .field b{font-family:"JetBrains Mono",monospace;font-size:1rem;letter-spacing:1px;word-break:break-all}
+  .pay .field i{float:right;font-style:normal;font-size:.76rem;color:var(--indigo);font-weight:800}
+  .pay .tip{margin-top:10px;font-size:.8rem;color:var(--muted)}
+  #toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);z-index:9500;padding:11px 22px;border-radius:30px;background:var(--navy);color:#fff;font-weight:700;box-shadow:0 10px 28px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.35s}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* Chân trang */
+  footer{position:relative;z-index:1;text-align:center;padding:48px 18px 110px;color:#c7d3f5;font-size:.9rem;margin-top:30px;
+    background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'><circle cx='3' cy='3' r='1.3' fill='%23ffffff' fill-opacity='.16'/></svg>"),linear-gradient(160deg,#0f1b4d,#1c2a7a)}
+  footer .flogo{height:54px;width:54px;object-fit:contain;background:#fff;border-radius:50%;padding:3px;margin-bottom:14px}
+  footer i{color:var(--gold-l);font-size:1.02rem}
+  #foot{cursor:default}
+  #foot .secret{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s ease,opacity .6s ease,margin .6s}
+  #foot.open .secret{max-height:300px;opacity:1;margin-top:16px}
+  #foot .secret p{color:#fff;line-height:1.8}
+  .secret a{color:var(--gold-l);text-decoration:none;word-break:break-all}.secret a:hover{text-decoration:underline}
+
+  /* Màn hình chạm để vào */
+  #enter{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;color:#fff;overflow:hidden;
+    background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'><circle cx='3' cy='3' r='1.3' fill='%23ffffff' fill-opacity='.16'/></svg>"),linear-gradient(160deg,#0f1b4d,#26308c 55%,#1b6aa8);opacity:0;visibility:hidden;transition:opacity .8s,visibility .8s}
+  #enter.show{opacity:1;visibility:visible}
+  #enter.gone{opacity:0;visibility:hidden;pointer-events:none}
+  #enter .ecard{position:relative;z-index:1;padding:34px 28px;border-radius:26px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(14px);max-width:470px}
+  #enter .elogo{height:84px;width:84px;object-fit:contain;background:#fff;border-radius:50%;padding:5px;margin-bottom:12px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+  #enter .star{font-size:2.6rem;color:var(--gold);line-height:1;animation:spin 8s linear infinite;display:inline-block}
+  #enter h3{margin-top:10px;font-size:clamp(1.15rem,4.5vw,1.55rem);font-weight:800}
+  #enter p{margin-top:10px;color:#cfe1ff;line-height:1.7}
+  #enter .tap{margin-top:26px;display:inline-block;padding:13px 28px;border-radius:50px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);font-weight:800;letter-spacing:1.5px;font-size:.82rem;animation:pulse 2s ease-in-out infinite}
+
+  #fxbtn{position:fixed;left:14px;bottom:14px;z-index:100;padding:10px 16px;border-radius:50px;border:1px solid var(--line);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;font-weight:700;font-size:.8rem;font-family:inherit;box-shadow:var(--shadow)}
+  #totop{position:fixed;left:14px;bottom:64px;z-index:100;width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;background:var(--grad);color:#fff;font-size:1.1rem;box-shadow:0 8px 20px rgba(79,70,229,.4);opacity:0;transform:translateY(10px);pointer-events:none;transition:.3s}
+  #totop.show{opacity:1;transform:none;pointer-events:auto}
+
+  /* Nhạc */
+  #music{position:fixed;right:14px;bottom:14px;z-index:100;width:290px;max-width:calc(100vw - 28px)}
+  #music .panel{display:none;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px;box-shadow:0 16px 40px rgba(40,50,130,.25)}
+  #music.open .panel{display:block}
+  #music .mtitle{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--indigo);letter-spacing:2px;margin-bottom:10px;font-weight:800}
+  #music .mrow{display:flex;align-items:center;gap:10px}
+  #mplay{flex:none;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font-size:1rem;color:#fff;background:var(--grad);box-shadow:0 6px 14px rgba(79,70,229,.35)}
+  #mseek{flex:1;min-width:0;accent-color:var(--indigo);cursor:pointer}
+  #mtime{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--muted);text-align:right}
+  #mvol{width:100%;margin-top:6px;accent-color:var(--cyan);cursor:pointer}
+  #music .toggle{margin-left:auto;display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:50px;border:0;cursor:pointer;color:#fff;font-weight:700;font-family:inherit;background:var(--grad);box-shadow:0 10px 24px rgba(79,70,229,.4)}
+  #music.playing .toggle .note{animation:spin 2.5s linear infinite}
+  .note{display:inline-block}
+
+  @media(max-width:700px){
+    nav .wrap{height:auto;flex-direction:column;gap:6px;padding:8px 14px}
+    nav ul{justify-content:center;gap:2px}nav ul a{font-size:.72rem;padding:5px 9px}
+    .hero{padding:40px 0 74px}
+    @keyframes orbit{from{transform:translate(-50%,-50%) rotate(0deg) translateX(108px) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(108px) rotate(-360deg)}}
+    .chip{font-size:.66rem;padding:3px 9px}
+    .info .row{flex-direction:column;align-items:flex-start;gap:4px}
+    .info span{min-width:0}
+    .feature{flex-direction:column;text-align:center}
+    .timeline{grid-template-columns:1fr;gap:6px}
+    .step{text-align:left;padding:0 0 18px 64px}
+    .step::before{top:48px;left:22px;width:4px;height:calc(100% - 30px)}
+    .dot{position:absolute;left:0;top:0;margin:0}
+    .goalrow{border-radius:20px}
+    #glow{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+  /* Nền ảnh */
+  #bg{position:fixed;inset:0;z-index:-1;background:#0f1b4d url("nen.jpg") center top/cover no-repeat}
+  #bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,77,.55),rgba(244,246,253,.62) 38%,rgba(244,246,253,.70))}
+  body{background:transparent}
+  .heroband{background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'><circle cx='3' cy='3' r='1.3' fill='%23ffffff' fill-opacity='.16'/></svg>"),linear-gradient(160deg,rgba(15,27,77,.62),rgba(38,48,140,.55) 52%,rgba(27,106,168,.45))}
+  .card{background:rgba(255,255,255,.93)}
+  nav{background:rgba(255,255,255,.88)}
+  .wave path:last-child{fill:rgba(244,246,253,.0)}
+  .lead{background:rgba(255,255,255,.8);padding:10px 14px;border-radius:0 10px 10px 0}
+
+  /* ===== Developer Portfolio ===== */
+  .dev-intro{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .dev-intro p{color:var(--muted);max-width:560px}
+  .gh{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:50px;background:#111827;color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;border:0;cursor:pointer;font-family:inherit;transition:.25s}
+  .gh:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+  .gh.off{background:#6b7280}
+  .dstats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-top:18px}
+  .sub{font-size:1.02rem;color:var(--navy);margin:26px 0 12px;font-weight:800;display:flex;align-items:center;gap:8px}
+  .sub small{font-weight:600;color:var(--muted);font-size:.8rem}
+  .pgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .pj{display:flex;flex-direction:column}
+  .pj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .pj-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:linear-gradient(135deg,#eef0ff,#dff7fb)}
+  .st{font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.3px}
+  .st.done{background:#dcfce7;color:#166534}.st.wip{background:#fef3c7;color:#92400e}.st.idea{background:#e5e7eb;color:#374151}
+  .pj h3{font-size:1rem;color:var(--navy);margin-bottom:6px}
+  .pj p{color:var(--muted);font-size:.9rem;line-height:1.65;flex:1}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+  .tags span{font-family:"JetBrains Mono",monospace;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:8px;background:#eef0ff;color:var(--indigo)}
+  .pj-links{display:flex;gap:8px;flex-wrap:wrap}
+  .pl{font-size:.78rem;font-weight:700;padding:7px 14px;border-radius:30px;text-decoration:none;color:var(--indigo);background:#eef0ff;border:1px solid #d4d9f7;transition:.2s}
+  a.pl:hover{background:var(--indigo);color:#fff}
+  .pl.off{color:#9aa3bd;background:#f3f4f8;border-color:#e5e7ef;cursor:default}
+  .terms{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .term{background:#0b1340;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(15,27,77,.28);display:flex;flex-direction:column}
+  .th{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#141d5c}
+  .th i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.th i:nth-child(2){background:#febc2e}.th i:nth-child(3){background:#28c840}
+  .th b{margin-left:8px;color:#c7d3f5;font-family:"JetBrains Mono",monospace;font-size:.74rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .th .lv{font-size:.64rem;font-weight:800;color:#0b1340;background:var(--gold-l);padding:2px 8px;border-radius:10px}
+  pre.code,pre.out{font-family:"JetBrains Mono",monospace;font-size:.76rem;line-height:1.7;padding:14px 16px;overflow-x:auto;color:#e6ecff;white-space:pre;margin:0}
+  pre.code{flex:1}
+  .code .kw{color:#c792ea}.code .st2{color:#a5e075}.code .nm{color:#f78c6c}.code .cm{color:#7b88b8;font-style:italic}.code .fn{color:#82aaff}
+  .tbar{display:flex;gap:8px;padding:8px 14px;border-top:1px solid rgba(255,255,255,.1)}
+  .tbar button{font-family:inherit;font-size:.74rem;font-weight:700;padding:6px 14px;border-radius:30px;border:0;cursor:pointer;color:#0b1340;background:var(--gold-l)}
+  .tbar button.cp{background:rgba(255,255,255,.12);color:#dbe4ff}
+  .tbar button:hover{filter:brightness(1.1)}
+  pre.out{background:#070c2e;color:#8ef0b0;min-height:0;max-height:210px;display:none;border-top:1px solid rgba(255,255,255,.08)}
+  pre.out.on{display:block}
+  .pnote{color:var(--muted);font-size:.8rem;margin-top:10px}
+  .wks{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:6px}
+  .wk{padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fafbff,#f1f4ff)}
+  .wk h4{font-size:.9rem;color:var(--navy);margin-bottom:8px}
+  .wk label{display:flex;gap:8px;align-items:flex-start;font-size:.84rem;color:var(--ink);padding:3px 0;cursor:pointer;line-height:1.45}
+  .wk input{margin-top:3px;accent-color:var(--indigo);flex:none}
+  .jt{position:relative;padding-left:4px}
+  .ji{position:relative;display:flex;gap:14px;padding-bottom:18px}
+  .ji:last-child{padding-bottom:0}
+  .ji::before{content:"";position:absolute;left:19px;top:40px;bottom:-2px;width:3px;background:#e1e7f6;border-radius:3px}
+  .ji:last-child::before{display:none}
+  .ji.done::before{background:var(--grad)}
+  .jd{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:#fff;border:3px solid #cfd7f0;position:relative;z-index:1}
+  .ji.done .jd{background:var(--grad);border-color:transparent;color:#fff}
+  .ji.now .jd{background:var(--gold);border-color:#e0a21f;animation:pulse 2s ease-in-out infinite}
+  .ji b{display:block;color:var(--navy);font-size:.95rem}.ji small{color:var(--indigo);font-weight:700;font-size:.76rem}
+  .ji p{color:var(--muted);font-size:.86rem;line-height:1.55;margin-top:2px}
+  .repos{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:12px}
+  .repo{display:block;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff;text-decoration:none;color:var(--ink);transition:.2s}
+  .repo:hover{border-color:var(--indigo);transform:translateY(-3px)}
+  .repo b{display:block;color:var(--indigo);font-size:.92rem;word-break:break-all}
+  .repo span{display:block;color:var(--muted);font-size:.8rem;margin:4px 0 6px}
+  .repo small{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--muted)}
+  .sub{display:inline-flex;flex-wrap:wrap;background:rgba(255,255,255,.88);padding:6px 14px;border-radius:30px;box-shadow:0 2px 10px rgba(40,55,130,.1)}
+  .pnote{display:inline-block;background:rgba(255,255,255,.88);padding:6px 14px;border-radius:12px}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="prog"></div>
+<div id="glow"></div>
+
+<div id="loader">
+  <div class="lring"></div>
+  <div class="load-name">HOÀNG ĐÌNH TIẾN</div>
+  <div class="load-text">ĐANG TẢI DỮ LIỆU...</div>
+  <div class="load-bar"><i></i></div>
+</div>
+
+<canvas id="fx"></canvas>
+
+<nav id="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="logo-hvktqs.png" alt="Logo Học viện Kỹ thuật Quân sự" onerror="this.style.display='none'">
+      <b>Hoàng Đình Tiến</b>
+    </a>
+    <ul id="menu">
+      <li><a href="#gioithieu">Giới thiệu</a></li>
+      <li><a href="#raquan">Hành trình</a></li>
+      <li><a href="#kynang">Kỹ năng</a></li>
+      <li><a href="#laptrinh">Lập trình</a></li>
+      <li><a href="#uocmo">Ước mơ</a></li>
+      <li><a href="#lienhe">Liên hệ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="heroband">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <header class="hero wrap">
+    <div class="avatar-box h" style="--d:.05s">
+      <img src="avatar.jpg" alt="Ảnh đại diện Hoàng Đình Tiến">
+      <span class="chip" style="--dl:0s">HTML</span>
+      <span class="chip c2" style="--dl:-6.5s">CSS</span>
+      <span class="chip c3" style="--dl:-13s">PYTHON</span>
+      <span class="chip c4" style="--dl:-19.5s">★ CNTT</span>
+    </div>
+    <h1 class="h" style="--d:.15s">Hoàng Đình Tiến</h1>
+    <div class="typing h" id="typing" style="--d:.25s"></div>
+    <div class="goalrow h" style="--d:.35s">
+      <img src="logo-hvktqs.png" alt="Logo Học viện Kỹ thuật Quân sự" onerror="this.style.display='none'">
+      <span>Mục tiêu: Học viện Kỹ thuật Quân sự<small>Hai năm quân ngũ, một ước mơ không đổi</small></span>
+    </div>
+    <p class="tagline h" style="--d:.45s">"Xin chào! Mình là Hoàng Đình Tiến, người con của vùng đất nắng gió Nghệ An.
+Hai năm quân ngũ (2026 – 2028) là quãng thời gian để mình tôi luyện bản lĩnh và ý chí. Vì khát vọng bảo vệ Tổ quốc bằng tri thức, kỹ thuật và đam mê chinh phục công nghệ, mình quyết tâm chọn Học viện Kỹ thuật Quân sự làm đích đến cho hành trình phía trước.
+Giữ trọn lời thề nơi thao trường, hẹn gặp Học viện Kỹ thuật Quân sự ngày ra quân!"</p>
+    <div class="socials h" style="--d:.55s">
+      <a class="btn" href="https://www.tiktok.com/@hoangdinhtien_xyz" target="_blank" rel="noopener me">🎵 TikTok</a>
+      <a class="btn" href="https://facebook.com/hoangdinhtien.xyz/" target="_blank" rel="noopener me">📘 Facebook</a>
+      <a class="btn" href="https://www.instagram.com/hoangdinhtien.xyz/" target="_blank" rel="noopener me">📸 Instagram</a>
+      <a class="btn" href="#laptrinh">💻 Portfolio</a>
+    </div>
+  </header>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,34 C220,70 470,2 720,30 C970,58 1210,8 1440,34 L1440,60 L0,60 Z" fill="#6f70ea" fill-opacity=".35"/><path d="M0,44 C240,70 480,16 720,40 C960,64 1200,22 1440,44 L1440,60 L0,60 Z" fill="#f4f6fd"/></svg>
+</div>
+
+<div class="ribbon" aria-hidden="true"><div class="track"><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i><span>ĐI ĐỂ TRỞ VỀ</span><i>✦</i><span>TRƯỞNG THÀNH ĐỂ CỐNG HIẾN</span><i>✦</i><span>GIỮ TRỌN LỜI THỀ NƠI THAO TRƯỜNG</span><i>✦</i></div></div>
+
+<main class="wrap">
+
+  <section id="gioithieu" class="reveal">
+    <h2><em>01</em>Thông tin cá nhân</h2>
+    <div class="card info">
+      <div class="row"><span><i>👤</i>Họ và tên</span><b>Hoàng Đình Tiến</b></div>
+      <div class="row"><span><i>🎂</i>Ngày sinh</span><b>06/11/2007 <small id="age" style="color:var(--muted);font-weight:500"></small></b></div>
+      <div class="row"><span><i>📍</i>Quê quán</span><b>Nghệ An, Việt Nam</b></div>
+      <div class="row"><span><i>💻</i>Lĩnh vực</span><b>Công nghệ thông tin</b></div>
+      <div class="row"><span><i>🎖️</i>Hiện tại</span><b>Thực hiện nghĩa vụ quân sự 2026 – 2028</b></div>
+      <div class="row"><span><i>🎯</i>Mục tiêu</span><b>Học viện Kỹ thuật Quân sự</b></div>
+      <div class="row"><span><i>✉️</i>Email</span><a href="mailto:hoangdinhtienchamcom@gmail.com">hoangdinhtienchamcom@gmail.com</a></div>
+    </div>
+  </section>
+
+  <section id="raquan" class="reveal">
+    <h2><em>02</em>Đếm ngày ra quân</h2>
+    <div class="card">
+      <div class="cd-head">
+        <span>🚩 Nhập ngũ: <b>05/03/2026</b></span>
+        <span>🏁 Ra quân: <b>10/01/2028</b> (22 tháng)</span>
+      </div>
+      <div class="bar"><div class="fill" id="fill"></div><div class="pct" id="pct">0%</div></div>
+      <div class="stats">
+        <div class="stat"><b id="sDone">0</b><small>ngày đã qua</small></div>
+        <div class="stat"><b id="sLeft">0</b><small>ngày còn lại</small></div>
+        <div class="stat"><b id="sWeeks">0</b><small>tuần còn lại</small></div>
+        <div class="stat"><b id="sTotal">0</b><small>tổng số ngày</small></div>
+      </div>
+      <p class="quote" id="quote">Hành trình nào cũng bắt đầu từ những bước chân đầu tiên, và mình đang bước từng ngày. 💪</p>
+    </div>
+  </section>
+
+  <section id="hanhtrinh" class="reveal">
+    <h2><em>03</em>Lộ trình phía trước</h2>
+    <div class="card">
+      <div class="timeline" id="timeline">
+        <div class="step" data-date="2026-03-05"><div class="dot">✓</div><b>Nhập ngũ</b><small>05/03/2026</small><p>Bắt đầu hai năm rèn luyện bản lĩnh, kỷ luật và tình đồng đội.</p></div>
+        <div class="step" data-date="2028-01-10"><div class="dot">★</div><b>Ra quân</b><small>10/01/2028</small><p>Hoàn thành nghĩa vụ quân sự, trở về với hành trang mới.</p></div>
+        <div class="step"><div class="dot">🎓</div><b>Học viện Kỹ thuật Quân sự</b><small>Mục tiêu sau ra quân</small><p>Ôn luyện và thi vào học viện, bước tiếp con đường kỹ thuật quân sự.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kynang" class="reveal">
+    <h2><em>04</em>Kỹ năng &amp; đam mê CNTT</h2>
+    <div class="card">
+      <div class="skill"><div class="top"><span>📊 Word, Excel, Powerpoint...(Ứng dụng công nghệ số)</span><b>90%</b></div><div class="sbar"><i data-w="90"></i></div></div>
+      <div class="skill"><div class="top"><span>📱 Facebook, Tiktok, Instagram,...(Bao quát nền tảng MXH)</span><b>85%</b></div><div class="sbar"><i data-w="85"></i></div></div>
+      <div class="skill"><div class="top"><span>🧑‍💻 HTML5 / CSS3 / PYTHON</span><b>75%</b></div><div class="sbar"><i data-w="75"></i></div></div>
+    </div>
+  </section>
+
+
+  <section id="laptrinh" class="reveal">
+    <h2><em>05</em>Developer Portfolio</h2>
+    <div class="card">
+      <div class="dev-intro">
+        <p>Góc lập trình của mình: những trang web HTML/CSS đã làm, bài tập Python đang luyện, sản phẩm công nghệ nhỏ và quá trình tự học từ con số 0. Mọi thứ đều đang lớn dần mỗi tuần.</p>
+        <button class="gh" id="ghbtn" type="button">🐙 GitHub</button>
+      </div>
+      <div class="dstats">
+        <div class="stat"><b id="dsProj">0</b><small>dự án hoàn thành</small></div>
+        <div class="stat"><b id="dsPy">0</b><small>bài tập Python</small></div>
+        <div class="stat"><b>3</b><small>ngôn ngữ đang học</small></div>
+        <div class="stat"><b id="dsWk">0%</b><small>lộ trình Python</small></div>
+      </div>
+    </div>
+    <h3 class="sub">🌐 Dự án HTML / CSS</h3>
+    <div class="pgrid"><article class="card pj"><div class="pj-top"><span class="pj-ico">🌐</span><span class="st done">Hoàn thành</span></div><h3>Trang cá nhân Hoàng Đình Tiến</h3><p>Website giới thiệu bản thân: đếm ngược ngày ra quân, nhạc nền, hiệu ứng nền, sao chép nhanh thông tin thanh toán, chữ ẩn ở chân trang.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="pj-links"><a class="pl" href="https://hoangdinhtien.netlify.app/" target="_blank" rel="noopener">🔗 Xem trang</a><a class="pl" href="index.html" download>⬇ Mã nguồn</a></div></article><article class="card pj"><div class="pj-top"><span class="pj-ico">📱</span><span class="st done">Thử nghiệm</span></div><h3>Hồ sơ kiểu mạng xã hội</h3><p>Giao diện hồ sơ cá nhân mô phỏng kiểu Facebook và TikTok: ảnh bìa, tab, nút theo dõi, lưới video, nền tối.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="pj-links"><span class="pl off">Sắp cập nhật</span></div></article><article class="card pj"><div class="pj-top"><span class="pj-ico">📐</span><span class="st wip">Đang luyện</span></div><h3>Bố cục responsive (Flexbox &amp; Grid)</h3><p>Bài luyện chia bố cục, card, menu thích ứng điện thoại và máy tính. Mục tiêu: dựng được một trang hoàn chỉnh mà không cần mẫu có sẵn.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Flexbox</span><span>Grid</span></div><div class="pj-links"><span class="pl off">Sắp cập nhật</span></div></article></div>
+    <h3 class="sub">🧩 Sản phẩm công nghệ cá nhân <small>(hoàn thành · ý tưởng · kế hoạch)</small></h3>
+    <div class="pgrid"><article class="card pj"><div class="pj-top"><span class="pj-ico">⏳</span><span class="st done">Hoàn thành</span></div><h3>Bộ đếm ngày ra quân</h3><p>Tính số ngày đã qua, ngày còn lại và phần trăm quãng đường quân ngũ (05/03/2026 → 10/01/2028), có thanh tiến độ chạy theo ngày thật.</p><div class="tags"><span>JavaScript</span><span>Date</span></div><div class="pj-links"><a class="pl" href="#raquan">👀 Xem trên trang</a></div></article><article class="card pj"><div class="pj-top"><span class="pj-ico">📊</span><span class="st idea">Ý tưởng</span></div><h3>Bảng theo dõi quá trình tự học</h3><p>Bảng ghi lại buổi học, bài đã làm và thời gian luyện mỗi tuần, làm bằng Google Sheets / AppSheet và xem lại bằng Looker Studio.</p><div class="tags"><span>Google Sheets</span><span>AppSheet</span><span>Looker Studio</span></div><div class="pj-links"><span class="pl off">Sắp cập nhật</span></div></article><article class="card pj"><div class="pj-top"><span class="pj-ico">🧠</span><span class="st idea">Kế hoạch</span></div><h3>Trợ lý ôn thi bằng Python</h3><p>Chương trình dòng lệnh hỏi đáp trắc nghiệm để ôn kiến thức thi vào học viện, tự chấm điểm và nhớ câu làm sai.</p><div class="tags"><span>Python</span><span>CLI</span></div><div class="pj-links"><span class="pl off">Sắp cập nhật</span></div></article></div>
+  </section>
+
+  <section id="python" class="reveal">
+    <h2><em>06</em>Bài tập Python</h2>
+    <div class="terms"><div class="term"><div class="th"><i></i><i></i><i></i><b>bai1_xin_chao.py</b><span class="lv">Bài 1</span></div><pre class="code"><code>ten = "Hoàng Đình Tiến"
+print(f"Xin chào, mình là {ten}!")</code></pre><div class="tbar"><button type="button" class="run" data-ex="hello">▶ Chạy thử</button><button type="button" class="cp">📋 Chép code</button></div><pre class="out" aria-live="polite"></pre></div><div class="term"><div class="th"><i></i><i></i><i></i><b>bai2_tinh_tuoi.py</b><span class="lv">Bài 2</span></div><pre class="code"><code>from datetime import date
+
+sinh = date(2007, 11, 6)
+hom_nay = date.today()
+tuoi = hom_nay.year - sinh.year - (
+    (hom_nay.month, hom_nay.day) &lt; (sinh.month, sinh.day)
+)
+print(f"Tuổi: {tuoi}")</code></pre><div class="tbar"><button type="button" class="run" data-ex="age">▶ Chạy thử</button><button type="button" class="cp">📋 Chép code</button></div><pre class="out" aria-live="polite"></pre></div><div class="term"><div class="th"><i></i><i></i><i></i><b>bai3_dem_ngay_ra_quan.py</b><span class="lv">Bài 3</span></div><pre class="code"><code>from datetime import date
+
+nhap_ngu = date(2026, 3, 5)
+ra_quan = date(2028, 1, 10)
+tong = (ra_quan - nhap_ngu).days
+qua = (date.today() - nhap_ngu).days
+print(f"Đã qua {qua}/{tong} ngày ({qua/tong:.2%})")</code></pre><div class="tbar"><button type="button" class="run" data-ex="army">▶ Chạy thử</button><button type="button" class="cp">📋 Chép code</button></div><pre class="out" aria-live="polite"></pre></div><div class="term"><div class="th"><i></i><i></i><i></i><b>bai4_fizzbuzz.py</b><span class="lv">Bài 4</span></div><pre class="code"><code>for i in range(1, 16):
+    if i % 15 == 0:
+        print("FizzBuzz")
+    elif i % 3 == 0:
+        print("Fizz")
+    elif i % 5 == 0:
+        print("Buzz")
+    else:
+        print(i)</code></pre><div class="tbar"><button type="button" class="run" data-ex="fizz">▶ Chạy thử</button><button type="button" class="cp">📋 Chép code</button></div><pre class="out" aria-live="polite"></pre></div></div>
+    <p class="pnote">Bấm “Chạy thử” để xem kết quả. Đây là bản mô phỏng ngay trên trình duyệt, cùng logic với code Python bên trên.</p>
+  </section>
+
+  <section id="hoclaptrinh" class="reveal">
+    <h2><em>07</em>Quá trình học lập trình</h2>
+    <div class="card">
+      <div class="jt">
+        <div class="ji done"><div class="jd">✓</div><div><b>HTML &amp; CSS</b><small>Đã nắm cơ bản</small><p>Dựng trang, chia bố cục, làm đẹp giao diện, làm cho trang chạy tốt trên điện thoại.</p></div></div>
+        <div class="ji done"><div class="jd">✓</div><div><b>JavaScript cơ bản</b><small>Đã áp dụng vào web</small><p>Đếm ngược ngày, hiệu ứng, phát nhạc, sao chép nội dung, lưu lựa chọn người dùng.</p></div></div>
+        <div class="ji now"><div class="jd">🐍</div><div><b>Python từ đầu</b><small>Đang học (kế hoạch 4 tuần)</small><p>Biến, điều kiện, vòng lặp, hàm, list và dict. Đang làm các bài tập nhỏ ở trên.</p></div></div>
+        <div class="ji"><div class="jd">🐙</div><div><b>Git &amp; GitHub</b><small>Sắp tới</small><p>Lưu lịch sử code, đưa dự án lên GitHub để mọi người xem được.</p></div></div>
+        <div class="ji"><div class="jd">🧰</div><div><b>Web với Python (Flask)</b><small>Mục tiêu tiếp theo</small><p>Viết phần xử lý phía máy chủ, làm ứng dụng nhỏ có dữ liệu thật.</p></div></div>
+        <div class="ji"><div class="jd">🎓</div><div><b>Học viện Kỹ thuật Quân sự</b><small>Đích đến</small><p>Mang nền tảng lập trình đã tích lũy vào môi trường học tập kỹ thuật quân sự.</p></div></div>
+      </div>
+    </div>
+
+    <h3 class="sub">✅ Lộ trình Python 4 tuần <small>(bấm để tick, máy sẽ nhớ)</small></h3>
+    <div class="card">
+      <div class="bar" style="margin-top:0"><div class="fill" id="wfill" style="transition:width .6s"></div><div class="pct" id="wpct">0%</div></div>
+      <div class="wks" id="wks">
+        <div class="wk"><h4>Tuần 1 · Làm quen</h4><label><input type="checkbox" data-k="w1a">Cài Python, chạy lệnh print()</label><label><input type="checkbox" data-k="w1b">Biến và kiểu dữ liệu</label><label><input type="checkbox" data-k="w1c">Nhập dữ liệu bằng input()</label></div>
+        <div class="wk"><h4>Tuần 2 · Rẽ nhánh &amp; lặp</h4><label><input type="checkbox" data-k="w2a">if / elif / else</label><label><input type="checkbox" data-k="w2b">Vòng lặp for, while</label><label><input type="checkbox" data-k="w2c">Làm bài FizzBuzz</label></div>
+        <div class="wk"><h4>Tuần 3 · Hàm &amp; dữ liệu</h4><label><input type="checkbox" data-k="w3a">Viết hàm với def</label><label><input type="checkbox" data-k="w3b">List và dict</label><label><input type="checkbox" data-k="w3c">Đọc / ghi file</label></div>
+        <div class="wk"><h4>Tuần 4 · Dự án nhỏ</h4><label><input type="checkbox" data-k="w4a">Chương trình đếm ngày ra quân</label><label><input type="checkbox" data-k="w4b">Trò chơi đoán số</label><label><input type="checkbox" data-k="w4c">Đưa lên GitHub</label></div>
+      </div>
+    </div>
+
+    <h3 class="sub">🐙 GitHub</h3>
+    <div class="card">
+      <div id="ghinfo"><p style="color:var(--muted)">Mình đang học cách đưa dự án lên GitHub. Đây là quy trình cơ bản mình sẽ dùng cho mỗi dự án:</p></div>
+      <div class="term" style="margin-top:12px"><div class="th"><i></i><i></i><i></i><b>terminal</b></div><pre class="code"><code># khởi tạo, lưu và đẩy dự án lên GitHub
+git init
+git add .
+git commit -m "Dự án đầu tiên"
+git branch -M main
+git remote add origin https://github.com/TEN-CUA-BAN/ten-du-an.git
+git push -u origin main</code></pre><div class="tbar"><button type="button" class="cp">📋 Chép lệnh</button></div></div>
+      <div class="repos" id="repos"></div>
+    </div>
+  </section>
+
+  <section id="uocmo" class="reveal">
+    <h2><em>08</em>Ước mơ &amp; định hướng</h2>
+    <p class="lead">“Có những ước mơ không ồn ào, chỉ lặng lẽ lớn lên trong từng bước chân hành quân, từng buổi sáng thức dậy trước tiếng kèn.”</p>
+    <div class="card feature">
+      <img class="slogo" src="logo-hvktqs.png" alt="Logo Học viện Kỹ thuật Quân sự" onerror="this.style.display='none'">
+      <div>
+        <h3>Học viện Kỹ thuật Quân sự</h3>
+        <p>Ước mơ lớn nhất: được khoác lên mình bộ quân phục của người học viên kỹ thuật quân sự, rèn tri thức và bản lĩnh, để một ngày dùng kỹ thuật và công nghệ góp phần xây dựng quân đội, bảo vệ Tổ quốc.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card goal"><div class="ico">🎖️</div><h3>Màu áo lính</h3><p>Khoác lên mình bộ quân phục, mình học cách đứng thẳng giữa nắng gió, học kỷ luật và học hai chữ “đồng đội”. Hai năm quân ngũ là hai năm tôi luyện để trưởng thành.</p></div>
+      <div class="card goal"><div class="ico">📚</div><h3>Cánh cửa giảng đường</h3><p>Ngày ra quân không phải điểm dừng mà là một khúc rẽ mới. Mình sẽ cầm lại cây bút, thi lại Đại học với bản lĩnh vững vàng hơn rất nhiều.</p></div>
+      <div class="card goal"><div class="ico">🚀</div><h3>Ngọn lửa công nghệ</h3><p>Dù ở đâu, mình vẫn giữ lửa với Công nghệ thông tin: học, thử, sai rồi làm lại, để một ngày đủ bản lĩnh làm chủ kỹ thuật phục vụ quân đội.</p></div>
+    </div>
+  </section>
+
+  <section id="lienhe" class="reveal">
+    <h2><em>09</em>Liên hệ &amp; kết nối</h2>
+    <div class="card" style="text-align:center">
+      <p style="color:var(--muted);margin-bottom:16px">Bạn có thể tìm mình trên các nền tảng sau với tên <b style="color:var(--indigo)">Hoàng Đình Tiến</b>:</p>
+      <div class="socials" style="margin-top:0">
+        <a class="btn" style="color:var(--indigo);border-color:#c3cbee;background:#f7f8ff" href="https://www.tiktok.com/@hoangdinhtien_xyz" target="_blank" rel="noopener me">🎵 @hoangdinhtien_xyz</a>
+        <a class="btn" style="color:var(--indigo);border-color:#c3cbee;background:#f7f8ff" href="https://facebook.com/hoangdinhtien.xyz/" target="_blank" rel="noopener me">📘 hoangdinhtien.xyz</a>
+        <a class="btn" style="color:var(--indigo);border-color:#c3cbee;background:#f7f8ff" href="https://www.instagram.com/hoangdinhtien.xyz/" target="_blank" rel="noopener me">📸 hoangdinhtien.xyz</a>
+        <a class="btn" style="color:var(--indigo);border-color:#c3cbee;background:#f7f8ff" href="mailto:hoangdinhtienchamcom@gmail.com">✉️ Gửi email</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="thanhtoan" class="reveal">
+    <h2><em>10</em>Thông tin thanh toán</h2>
+    <div class="card pay">
+      <div class="pay-visual">
+        <div class="bankcard" data-copy="973277" role="button" tabindex="0" title="Chạm để sao chép số tài khoản">
+          <div class="bc-top"><span>NGÂN HÀNG QUÂN ĐỘI · MB</span></div>
+          <div class="bc-chip"></div>
+          <div class="bc-num">973277</div>
+          <div class="bc-bottom"><div><small>CHỦ TÀI KHOẢN</small><b>HOANG DINH TIEN</b></div><span class="bc-hint">Chạm để chép</span></div>
+        </div>
+        <img class="qr" src="qr-mbbank.jpg" alt="Mã QR MB Bank" onerror="this.style.display='none'">
+      </div>
+      <div class="detail">
+        <div class="bank">MB Bank (Ngân hàng Quân đội)</div>
+        <button class="field" type="button" data-copy="HOANG DINH TIEN"><small>TÊN TÀI KHOẢN</small><i>Sao chép</i><b>HOANG DINH TIEN</b></button>
+        <button class="field" type="button" data-copy="973277"><small>SỐ TÀI KHOẢN</small><i>Sao chép</i><b>973277</b></button>
+        <a class="field" href="index.html" download><small>MÃ NGUỒN WEBSITE</small><i>Tải xuống</i><b>DOWNLOAD SOURCE CODE</b></a>
+        <div class="tip">Chạm vào ô để sao chép. Cảm ơn bạn rất nhiều!</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="foot">
+  <img class="flogo" src="logo-hvktqs.png" alt="" onerror="this.style.display='none'"><br>
+  <i>Đi để trở về, trưởng thành để cống hiến. 🇻🇳</i><br><br>© 2026 Hoàng Đình Tiến • 06 - 11 - 2007
+  <div class="secret" id="secret"><p>Facebook: <a href="https://bom.so/hdtfb" target="_blank" rel="noopener noreferrer">https://bom.so/hdtfb</a></p><p>TikTok: <a href="https://bom.so/hdttiktok" target="_blank" rel="noopener noreferrer">https://bom.so/hdttiktok</a></p></div>
+</footer>
+
+<div id="toast">Đã sao chép ✓</div>
+
+<button id="totop" type="button" aria-label="Lên đầu trang">↑</button>
+<button id="fxbtn" type="button" aria-label="Đổi hiệu ứng nền">✨ Hiệu ứng: Lấp lánh</button>
+
+<audio id="bgm" src="nhac.mp3" loop preload="auto"></audio>
+
+<div id="music">
+  <div class="panel">
+    <div class="mtitle">♪ NHẠC NỀN</div>
+    <div class="mrow">
+      <button id="mplay" type="button" aria-label="Phát / tạm dừng">▶</button>
+      <input id="mseek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Tua nhạc">
+    </div>
+    <div id="mtime">0:00 / 0:00</div>
+    <input id="mvol" type="range" min="0" max="1" value="1" step="0.05" aria-label="Âm lượng">
+  </div>
+  <button class="toggle" id="mtoggle" type="button" aria-label="Mở trình phát nhạc"><span class="note">🎵</span> Nhạc</button>
+</div>
+
+<div id="enter" role="button" tabindex="0" aria-label="Chạm để vào trang">
+  <div class="ecard">
+    <img class="elogo" src="logo-hvktqs.png" alt="Logo Học viện Kỹ thuật Quân sự" onerror="this.style.display='none'"><br>
+    <span class="star">★</span>
+    <h3>Chào mừng bạn đến với trang của Hoàng Đình Tiến</h3>
+    <p>Một chút âm nhạc cho hành trình thêm trọn vẹn. Bạn nhớ bật âm thanh nhé!</p>
+    <div class="tap">CHẠM BẤT KỲ ĐÂU ĐỂ BƯỚC VÀO</div>
+  </div>
+</div>
+
+<script>
+/* ===== Loading ===== */
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    document.getElementById('loader').classList.add('hide');
+    document.getElementById('enter').classList.add('show');
+  },1900);
+});
+
+/* ===== Thanh tiến độ cuộn + nút lên đầu trang ===== */
+(function(){
+  var bar=document.getElementById('prog'),up=document.getElementById('totop');
+  function upd(){
+    var h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';
+    up.classList.toggle('show',scrollY>600);
+  }
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  up.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+})();
+
+/* ===== Ánh sáng đi theo chuột (máy tính) ===== */
+(function(){
+  if(!matchMedia('(pointer:fine)').matches)return;
+  var g=document.getElementById('glow');
+  addEventListener('pointermove',function(e){
+    g.style.opacity=1;
+    g.style.transform='translate('+(e.clientX-210)+'px,'+(e.clientY-210)+'px)';
+  },{passive:true});
+})();
+
+/* ===== Menu đánh dấu mục đang xem ===== */
+(function(){
+  var links=document.querySelectorAll('#menu a'),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  var so=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('active')});
+        var al={hanhtrinh:'raquan',python:'laptrinh',hoclaptrinh:'laptrinh'},id=al[e.target.id]||e.target.id;
+        if(map[id])map[id].classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  document.querySelectorAll('main section').forEach(function(s){so.observe(s)});
+})();
+
+/* ===== Gõ chữ ===== */
+(function(){
+  var words=["hoangdinhtienxyz","Đi để trở về, trưởng thành để cống hiến. 🇻🇳","⚙️ Học Viện Kỹ Thuật Quân Sự ⚙️","🎖️ Người lính trẻ 2026 – 2028 🎖️","💻 Công nghệ thông tin 💻","nhoem..!","03","05","08"];
+  var el=document.getElementById('typing'),w=0,c=0,del=false;
+  (function tick(){
+    var t=words[w];
+    el.textContent=t.slice(0,c);
+    if(!del&&c<t.length){c++;setTimeout(tick,85)}
+    else if(!del){del=true;setTimeout(tick,1500)}
+    else if(c>0){c--;setTimeout(tick,40)}
+    else{del=false;w=(w+1)%words.length;setTimeout(tick,300)}
+  })();
+})();
+
+/* ===== Tuổi ===== */
+(function(){
+  var b=new Date(2007,10,6),n=new Date();
+  var a=n.getFullYear()-b.getFullYear();
+  if(n<new Date(n.getFullYear(),10,6))a--;
+  document.getElementById('age').textContent='('+a+' tuổi)';
+})();
+
+/* ===== Đếm ngày ra quân ===== */
+var pctNow=0,vals={};
+function calc(){
+  var start=new Date(2026,2,5),end=new Date(2028,0,10),now=new Date();
+  var DAY=86400000;
+  var total=Math.round((end-start)/DAY);
+  var done=Math.floor((now-start)/DAY);
+  if(done<0)done=0; if(done>total)done=total;
+  var left=total-done;
+  pctNow=Math.min(100,Math.max(0,(now-start)/(end-start)*100));
+  vals={sDone:done,sLeft:left,sWeeks:Math.ceil(left/7),sTotal:total};
+  for(var k in vals)document.getElementById(k).textContent=vals[k];
+  var q=document.getElementById('quote');
+  if(left===0)q.textContent='🎉 Chúc mừng hdt hoàn thành nghĩa vụ, trở về với trái tim rực lửa và đôi vai vững vàng!';
+  else if(pctNow>=75)q.textContent='Sắp về đích rồi, thêm chút nữa thôi, mùa ra quân đang gọi tên. 🏁';
+  else if(pctNow>=50)q.textContent='Đã qua hơn nửa chặng đường, mỗi ngày là một bước trưởng thành. 🔥';
+  else if(pctNow>=25)q.textContent='Một phần tư hành trình đã qua, nắng gió thao trường đã làm đôi vai thêm rắn rỏi. 💪';
+  else q.textContent='Hành trình nào cũng bắt đầu từ những bước chân đầu tiên, và mình đang bước từng ngày. 💪';
+}
+function countUp(id,target,dur){
+  var el=document.getElementById(id),t0=null;
+  (function step(ts){
+    if(!t0)t0=ts;
+    var k=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-k,3);
+    el.textContent=Math.round(target*e);
+    if(k<1)requestAnimationFrame(step);else el.textContent=target;
+  })(performance.now());
+}
+function startFill(){
+  calc();
+  var f=document.getElementById('fill'),p=document.getElementById('pct');
+  f.style.width=pctNow+'%';
+  var t0=null,dur=2400;
+  (function step(ts){
+    if(!t0)t0=ts;
+    var k=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-k,3);
+    p.textContent=(pctNow*e).toFixed(2)+'%';
+    if(k<1)requestAnimationFrame(step);else p.textContent=pctNow.toFixed(2)+'%';
+  })(performance.now());
+  for(var k in vals)countUp(k,vals[k],1800);
+}
+calc();
+setInterval(calc,60000);
+
+/* ===== Mốc lộ trình ===== */
+(function(){
+  var now=new Date(),first=true;
+  document.querySelectorAll('#timeline .step').forEach(function(s){
+    var d=s.getAttribute('data-date');
+    if(d&&now>=new Date(d))s.classList.add('done');
+    else if(first){s.classList.add('next');first=false}
+  });
+})();
+
+/* ===== Hiện dần khi cuộn + thanh kỹ năng ===== */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      e.target.querySelectorAll('.sbar i').forEach(function(i){i.style.width=i.dataset.w+'%'});
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(function(s){io.observe(s)});
+
+/* ===== Hiệu ứng nền: lấp lánh / bong bóng / tuyết / tắt ===== */
+(function(){
+  var cv=document.getElementById('fx'),ctx=cv.getContext('2d');
+  var modes=['sparkle','bubble','snow','off'],labels={sparkle:'✨ Hiệu ứng: Lấp lánh',bubble:'🫧 Hiệu ứng: Bong bóng',snow:'❄️ Hiệu ứng: Tuyết',off:'🚫 Hiệu ứng: Tắt'};
+  var COL=['79,70,229','6,182,212','245,184,61','139,92,246'];
+  var mode=0,P=[];
+  function size(){cv.width=innerWidth;cv.height=innerHeight}
+  size();addEventListener('resize',size);
+  function make(){
+    var m=modes[mode];P=[];
+    var n=innerWidth<600?26:50;
+    for(var i=0;i<n;i++){
+      P.push({x:Math.random()*cv.width,y:Math.random()*cv.height,
+        r:m==='sparkle'?Math.random()*3+1.5:(m==='snow'?Math.random()*3+1.2:Math.random()*12+4),
+        s:m==='bubble'?Math.random()*.8+.3:Math.random()*.5+.15,
+        d:Math.random()*Math.PI*2,f:Math.random()*Math.PI*2,c:COL[i%COL.length]});
+    }
+  }
+  make();
+  function sparkle(x,y,r,a,c){
+    ctx.save();ctx.translate(x,y);
+    ctx.fillStyle='rgba('+c+','+a.toFixed(2)+')';
+    ctx.beginPath();
+    for(var i=0;i<8;i++){
+      var rr=i%2?r*.28:r*2.2,an=i*Math.PI/4;
+      ctx[i?'lineTo':'moveTo'](Math.cos(an)*rr,Math.sin(an)*rr);
+    }
+    ctx.closePath();ctx.fill();ctx.restore();
+  }
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    var m=modes[mode];
+    if(m!=='off'){
+      P.forEach(function(p){
+        p.d+=.01;p.f+=.04;p.x+=Math.sin(p.d)*.4;
+        if(m==='sparkle'){
+          p.y-=p.s;if(p.y<-12){p.y=cv.height+12;p.x=Math.random()*cv.width}
+          sparkle(p.x,p.y,p.r,.25+.4*Math.abs(Math.sin(p.f)),p.c);
+        }else if(m==='snow'){
+          p.y+=p.s*2;if(p.y>cv.height+5){p.y=-5;p.x=Math.random()*cv.width}
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(120,145,235,.55)';ctx.fill();
+        }else{
+          p.y-=p.s;if(p.y<-30){p.y=cv.height+30;p.x=Math.random()*cv.width}
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);
+          ctx.strokeStyle='rgba('+p.c+',.45)';ctx.lineWidth=1.3;ctx.stroke();
+          ctx.fillStyle='rgba('+p.c+',.06)';ctx.fill();
+        }
+      });
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+  var btn=document.getElementById('fxbtn');
+  btn.addEventListener('click',function(){
+    mode=(mode+1)%modes.length;btn.textContent=labels[modes[mode]];make();
+  });
+})();
+
+/* ===== Chạm để vào + nhạc nền ===== */
+(function(){
+  var au=document.getElementById('bgm'),ov=document.getElementById('enter'),box=document.getElementById('music');
+  var play=document.getElementById('mplay'),seek=document.getElementById('mseek'),tm=document.getElementById('mtime'),vol=document.getElementById('mvol');
+  var done=false,dragging=false;
+  function fmt(t){if(!isFinite(t))t=0;var m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+(s<10?'0':'')+s}
+  function upd(){
+    tm.textContent=fmt(au.currentTime)+' / '+fmt(au.duration);
+    if(!dragging&&au.duration)seek.value=au.currentTime/au.duration*100;
+  }
+  function go(){
+    if(done)return;done=true;
+    var pr=au.play();if(pr&&pr.catch)pr.catch(function(){});
+    ov.classList.add('gone');
+    document.body.classList.add('in');
+    startFill();
+  }
+  ov.addEventListener('click',go);
+  ov.addEventListener('touchend',go);
+  ov.addEventListener('keydown',go);
+
+  document.getElementById('mtoggle').addEventListener('click',function(){box.classList.toggle('open')});
+  play.addEventListener('click',function(){if(au.paused){var pr=au.play();if(pr&&pr.catch)pr.catch(function(){})}else au.pause()});
+  au.addEventListener('play',function(){play.textContent='⏸';box.classList.add('playing')});
+  au.addEventListener('pause',function(){play.textContent='▶';box.classList.remove('playing')});
+  au.addEventListener('timeupdate',upd);
+  au.addEventListener('loadedmetadata',upd);
+  au.addEventListener('error',function(){tm.textContent='Chưa tìm thấy file nhac.mp3'});
+  seek.addEventListener('input',function(){dragging=true;if(au.duration)tm.textContent=fmt(seek.value/100*au.duration)+' / '+fmt(au.duration)});
+  seek.addEventListener('change',function(){if(au.duration)au.currentTime=seek.value/100*au.duration;dragging=false});
+  vol.addEventListener('input',function(){au.volume=vol.value});
+})();
+
+/* ===== Sao chép thông tin thanh toán + chữ ẩn chân trang ===== */
+(function(){
+  var toast=document.getElementById('toast'),tt;
+  function show(msg){
+    toast.textContent=msg;toast.classList.add('show');
+    clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800);
+  }
+  function copy(text){
+    if(navigator.clipboard&&window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(ok,fail){
+      var t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';
+      document.body.appendChild(t);t.select();
+      try{document.execCommand('copy')?ok():fail()}catch(e){fail(e)}
+      document.body.removeChild(t);
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    function run(){
+      var sm=b.querySelector('small');
+      var label=b.classList.contains('bankcard')?'số tài khoản':(sm?sm.textContent.toLowerCase():'nội dung');
+      copy(b.dataset.copy).then(function(){show('Đã sao chép '+label+' ✓')},function(){show('Không sao chép được, bạn hãy giữ để chép tay nhé')});
+    }
+    b.addEventListener('click',run);
+    b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();run()}});
+  });
+  var foot=document.getElementById('foot');
+  foot.addEventListener('click',function(){foot.classList.toggle('open')});
+})();
+
+/* ===== Developer Portfolio ===== */
+(function(){
+  /* >>> ĐIỀN TÊN TÀI KHOẢN GITHUB CỦA BẠN VÀO ĐÂY (ví dụ: "hoangdinhtien") <<< */
+  var GITHUB_USER="";
+
+  var toast=document.getElementById('toast'),tt;
+  function show(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800)}
+
+  /* tô màu code Python */
+  document.querySelectorAll('#python pre.code code, #hoclaptrinh pre.code code').forEach(function(c){
+    if(c.closest('#hoclaptrinh'))return;
+    var raw=c.textContent;
+    c.innerHTML=raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(#.*$)|(f?"[^"\n]*")|\b(from|import|for|in|if|elif|else|def|return|while)\b|\b(print|range|date)\b|\b(\d+)\b/gm,function(m,cm,st,kw,fn,nm){
+      if(cm)return '<span class="cm">'+m+'</span>';
+      if(st)return '<span class="st2">'+m+'</span>';
+      if(kw)return '<span class="kw">'+m+'</span>';
+      if(fn)return '<span class="fn">'+m+'</span>';
+      return '<span class="nm">'+m+'</span>';
+    });
+  });
+
+  /* chạy thử (mô phỏng) */
+  var DAY=864e5;
+  function today(){var n=new Date();return Date.UTC(n.getFullYear(),n.getMonth(),n.getDate())}
+  var EX={
+    hello:function(){return ['Xin chào, mình là Hoàng Đình Tiến!']},
+    age:function(){var n=new Date(),a=n.getFullYear()-2007;if(n.getMonth()<10||(n.getMonth()===10&&n.getDate()<6))a--;return ['Tuổi: '+a]},
+    army:function(){var s=Date.UTC(2026,2,5),e=Date.UTC(2028,0,10),tong=Math.round((e-s)/DAY),qua=Math.round((today()-s)/DAY);return ['Đã qua '+qua+'/'+tong+' ngày ('+(qua/tong*100).toFixed(2)+'%)']},
+    fizz:function(){var r=[];for(var i=1;i<16;i++)r.push(i%15===0?'FizzBuzz':i%3===0?'Fizz':i%5===0?'Buzz':String(i));return r}
+  };
+  document.querySelectorAll('.term .run').forEach(function(b){
+    b.addEventListener('click',function(){
+      var out=b.closest('.term').querySelector('.out'),lines=EX[b.dataset.ex](),i=0;
+      out.classList.add('on');out.textContent='$ python '+b.closest('.term').querySelector('.th b').textContent+'\n';
+      (function nx(){if(i<lines.length){out.textContent+=lines[i++]+'\n';out.scrollTop=out.scrollHeight;setTimeout(nx,lines.length>5?70:0)}})();
+    });
+  });
+  document.querySelectorAll('.term .cp').forEach(function(b){
+    b.addEventListener('click',function(){
+      var txt=b.closest('.term').querySelector('pre.code').textContent;
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(function(){show('Đã sao chép code ✓')},function(){show('Không sao chép được')})}
+      else{var t=document.createElement('textarea');t.value=txt;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy');show('Đã sao chép code ✓')}catch(e){show('Không sao chép được')}document.body.removeChild(t)}
+    });
+  });
+
+  /* thống kê */
+  document.getElementById('dsProj').textContent=document.querySelectorAll('.pj .st.done').length;
+  document.getElementById('dsPy').textContent=document.querySelectorAll('.term .run').length;
+
+  /* checklist Python (nhớ bằng localStorage) */
+  var boxes=document.querySelectorAll('#wks input'),KEY='hdt-py',saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  function upd(){
+    var n=0;boxes.forEach(function(x){if(x.checked)n++});
+    var p=Math.round(n/boxes.length*100);
+    document.getElementById('wfill').style.width=p+'%';
+    document.getElementById('wpct').textContent=p+'%';
+    document.getElementById('dsWk').textContent=p+'%';
+  }
+  boxes.forEach(function(x){
+    x.checked=!!saved[x.dataset.k];
+    x.addEventListener('change',function(){saved[x.dataset.k]=x.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}upd()});
+  });
+  upd();
+
+  /* GitHub */
+  var gb=document.getElementById('ghbtn');
+  if(GITHUB_USER){
+    gb.addEventListener('click',function(){window.open('https://github.com/'+GITHUB_USER,'_blank','noopener')});
+    fetch('https://api.github.com/users/'+GITHUB_USER+'/repos?sort=updated&per_page=6').then(function(r){return r.ok?r.json():[]}).then(function(rs){
+      if(!rs.length)return;
+      document.getElementById('ghinfo').innerHTML='<p style="color:var(--muted)">Các repository mới cập nhật của <b>@'+GITHUB_USER+'</b>:</p>';
+      document.getElementById('repos').innerHTML=rs.map(function(r){
+        var d=(r.description||'Chưa có mô tả').replace(/</g,'&lt;');
+        return '<a class="repo" href="'+r.html_url+'" target="_blank" rel="noopener"><b>'+r.name.replace(/</g,'&lt;')+'</b><span>'+d+'</span><small>'+(r.language||'—')+' · ★ '+r.stargazers_count+'</small></a>';
+      }).join('');
+    }).catch(function(){});
+  }else{
+    gb.classList.add('off');
+    gb.addEventListener('click',function(){show('Mình sẽ cập nhật GitHub sớm nhé!')});
+  }
+})();
+</script>
+</body>
+</html>
